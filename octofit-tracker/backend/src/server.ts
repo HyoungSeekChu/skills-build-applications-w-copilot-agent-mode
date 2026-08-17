@@ -8,10 +8,9 @@ import apiRouter from './routes/index.ts';
 
 const app = express();
 const port = 8000;
-const codespaceName = process.env.CODESPACE_NAME;
-const apiBaseUrl = codespaceName
-  ? `https://${codespaceName}-${port}.app.github.dev`
-  : `http://localhost:${port}`;
+const apiBaseUrl = process.env.CODESPACE_NAME
+  ? `https://${process.env.CODESPACE_NAME}-8000.app.github.dev`
+  : 'http://localhost:8000';
 
 app.use(cors());
 app.use(express.json());
