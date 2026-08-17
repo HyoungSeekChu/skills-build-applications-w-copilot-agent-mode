@@ -3,11 +3,15 @@ import 'dotenv/config';
 import cors from 'cors';
 import express from 'express';
 
-import { apiBaseUrl, port } from './config/apiUrl.ts';
 import './config/database.ts';
 import apiRouter from './routes/index.ts';
 
 const app = express();
+const port = 8000;
+const codespaceName = process.env.CODESPACE_NAME;
+const apiBaseUrl = codespaceName
+  ? `https://${codespaceName}-${port}.app.github.dev`
+  : `http://localhost:${port}`;
 
 app.use(cors());
 app.use(express.json());
